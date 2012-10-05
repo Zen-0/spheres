@@ -1,6 +1,11 @@
 #ifndef SCENE3D_H
 #define SCENE3D_H
 
+// начальный размер окна
+#define window_size_x 1024
+#define window_size_y 768
+
+
 #include <QGLWidget>
 #include <QtOpenGL>
 #include <QTimer>
@@ -17,7 +22,7 @@ protected:
     int point; // набранные очки
     int gdx, gdy; // Координаты объектов (гусей)
     int cax, cay, cbx, cby; // Координаты курсора
-    int wax ,way; // Размеры окна
+    int cur_win_x, cur_win_y; // Текущие размеры окна
     bool singling; // Для выделение области
     void self_cursor(); // метод для рисования своего курсора
     void initializeGL(); // Метод для инициализирования opengl

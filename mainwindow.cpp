@@ -4,8 +4,9 @@ MainWindow::MainWindow(QWidget* parent) : QGLWidget(parent)
 {
     point=0;
     geese_size=30;
-    wax=500; way=500; // начальный размер окна
     singling=false;
+    cur_win_x = window_size_x;
+    cur_win_y = window_size_y;
     geese_coord();
     setFormat(QGLFormat(QGL::DoubleBuffer)); // Двойная буферизация
     glDepthFunc(GL_LEQUAL); // Буфер глубины
@@ -24,8 +25,8 @@ void MainWindow::resizeGL(int nWidth, int nHeight)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glViewport(0, 0, (GLint)nWidth, (GLint)nHeight);
-    wax=nWidth;
-    way=nHeight;
+    cur_win_x=nWidth;
+    cur_win_y=nHeight;
 }
 
 void MainWindow::paintGL()
@@ -33,7 +34,7 @@ void MainWindow::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // чистим буфер изображения и буфер глубины
     glMatrixMode(GL_PROJECTION); // устанавливаем матрицу
     glLoadIdentity(); // загружаем матрицу
-    glOrtho(0,wax,way,0,1,0); // подготавливаем плоскости для матрицы
+    glOrtho(0,window_size_x,window_size_y,0,1,0); // подготавливаем плоскости для матрицы
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -128,8 +129,8 @@ void MainWindow::singling_lb()
 
 void MainWindow::geese_coord()
 {
-    gdx = (rand() % (wax-geese_size*2)) + geese_size;
-    gdy = (rand() % (way-geese_size*2)) + geese_size;
+    gdx = (rand() % (cur_win_x-geese_size*2)) + geese_size;
+    gdy = (rand() % (cur_win_y-geese_size*2)) + geese_size;
     qDebug() << gdx + ", "+ gdy;
     updateGL();
 }
