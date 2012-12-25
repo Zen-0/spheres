@@ -4,7 +4,7 @@
 
 
 
-int main(int argc, char *argv[])
+int main(intt argc, char *argv[])
 {
     tests(argc, argv);
     LL A = {3, 0xFACE, 0xDAFF, 0xBA11};
