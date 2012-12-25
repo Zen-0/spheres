@@ -6,6 +6,7 @@
 
 int main(int argc, char *argv[])
 {
+
     tests(argc, argv);
     LL A = {3, 0xFACE, 0xDAFF, 0xBA11};
     LL B = {2, 0x1111, 0x2222};
